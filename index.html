@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Sathya Sai Center of Austin — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Sri Sathya Sai Center of Austin — Design System
+   Royal Blue · Saffron Orange · Warm Neutral
+   Fonts: Cinzel (display) · Source Serif 4 (editorial) · Jost (UI)
+   ============================================================ */
+
+:root {
+  /* ── ROYAL BLUE (Primary Brand) ── */
+  --blue-50:  #EAF1FA;
+  --blue-100: #C3D9F2;
+  --blue-200: #90BBE7;
+  --blue-300: #5A97D4;
+  --blue-400: #3078BE;
+  --blue-500: #1A5EA8;  /* ★ LOGO EXACT */
+  --blue-600: #154D8A;
+  --blue-700: #103B6A;
+  --blue-800: #0A274A;
+  --blue-900: #05132A;
+
+  /* ── SAFFRON ORANGE (Accent) ── */
+  --saffron-50:  #FEF5E8;
+  --saffron-100: #FCE4BA;
+  --saffron-200: #FACE86;
+  --saffron-300: #F8B450;
+  --saffron-400: #F7A435;
+  --saffron-500: #F7941D;  /* ★ LOGO EXACT */
+  --saffron-600: #D97A10;
+  --saffron-700: #B05E08;
+  --saffron-800: #854504;
+  --saffron-900: #542A02;
+
+  /* ── WARM NEUTRALS (backgrounds, text, borders) ── */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F9F7F4;
+  --neutral-100: #F2EDE6;
+  --neutral-200: #E8DFD0;
+  --neutral-300: #D5C8B2;
+  --neutral-400: #B8A88A;
+  --neutral-500: #8C7C62;
+  --neutral-600: #6B5C44;
+  --neutral-700: #4E4030;
+  --neutral-800: #342C22;
+  --neutral-900: #181410;
+
+  /* ── SEMANTIC TOKENS ── */
+  --color-primary:        var(--blue-500);
+  --color-primary-dark:   var(--blue-600);
+  --color-primary-darker: var(--blue-700);
+  --color-primary-light:  var(--blue-100);
+  --color-primary-tint:   var(--blue-50);
+
+  --color-accent:         var(--saffron-500);
+  --color-accent-dark:    var(--saffron-600);
+  --color-accent-light:   var(--saffron-100);
+  --color-accent-tint:    var(--saffron-50);
+
+  --color-bg:             var(--neutral-50);
+  --color-surface:        var(--neutral-0);
+  --color-surface-raised: var(--neutral-0);
+  --color-border:         var(--neutral-200);
+  --color-border-subtle:  var(--neutral-100);
+
+  --color-text-primary:   var(--neutral-800);
+  --color-text-secondary: var(--neutral-600);
+  --color-text-muted:     var(--neutral-400);
+  --color-text-on-blue:   var(--neutral-0);
+  --color-text-on-saffron:var(--neutral-0);
+
+  /* ── TYPOGRAPHY ── */
+  --font-display:  'Cinzel', 'Georgia', serif;
+  --font-serif:    'Source Serif 4', 'Georgia', serif;
+  --font-ui:       'Jost', 'Trebuchet MS', sans-serif;
+  --font-mono:     'Courier New', monospace;
+
+  /* ── SPACING (4px base) ── */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;
+  --sp-4: 16px;  --sp-5: 20px;  --sp-6: 24px;
+  --sp-8: 32px;  --sp-10: 40px; --sp-12: 48px;
+  --sp-7:  28px;
+  --sp-16: 64px; --sp-20: 80px;
+
+  /* ── RADIUS ── */
+  --r-sm:   4px;
+  --r-md:   8px;
+  --r-lg:   12px;
+  --r-xl:   20px;
+  --r-pill: 999px;
+
+  /* ── SHADOWS ── */
+  --shadow-xs: 0 1px 2px rgba(10,39,74,.06);
+  --shadow-sm: 0 2px 8px rgba(10,39,74,.08), 0 1px 3px rgba(10,39,74,.06);
+  --shadow-md: 0 4px 20px rgba(10,39,74,.10), 0 2px 8px rgba(10,39,74,.06);
+  --shadow-lg: 0 8px 40px rgba(10,39,74,.14), 0 4px 16px rgba(10,39,74,.08);
+  --shadow-blue: 0 4px 20px rgba(26,94,168,.25);
+  --shadow-saffron: 0 4px 20px rgba(247,148,29,.30);
+
+  /* ── TRANSITIONS ── */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --dur-fast: 150ms;
+  --dur-med:  220ms;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-ui);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue-500); text-decoration: none; transition: color var(--dur-fast) var(--ease); }
+a:hover { color: var(--blue-600); }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.ds-container { max-width: 1160px; margin: 0 auto; padding: 0 var(--sp-8); }
+.ds-section {
+  padding: var(--sp-16) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.ds-section:last-child { border-bottom: none; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+@media (max-width: 768px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .ds-container { padding: 0 var(--sp-5); }
+}
+
+/* ============================================================
+   SECTION HEADERS
+   ============================================================ */
+.sec-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--saffron-600);
+  display: flex; align-items: center; gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.sec-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--saffron-500);
+  border-radius: 1px;
+}
+.sec-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 600; letter-spacing: 0.02em;
+  color: var(--blue-800);
+  line-height: 1.15;
+  margin-bottom: var(--sp-3);
+}
+.sec-desc {
+  font-family: var(--font-serif);
+  font-size: 16px; color: var(--color-text-secondary);
+  max-width: 560px; line-height: 1.75;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.ds-nav {
+  background: var(--blue-500);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: var(--shadow-md);
+}
+.nav-inner {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-4) 0;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: var(--sp-3);
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--saffron-500);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 16px; color: #fff;
+  box-shadow: var(--shadow-saffron);
+  flex-shrink: 0;
+}
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 600;
+  letter-spacing: 0.08em; color: #fff;
+}
+.nav-links { display: flex; gap: var(--sp-1); list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,.8); padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  transition: all var(--dur-fast) var(--ease);
+}
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,.12); }
+.nav-links a.active { color: var(--saffron-300); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.ds-hero {
+  background: var(--blue-800);
+  padding: var(--sp-20) 0 var(--sp-16);
+  position: relative; overflow: hidden;
+  border-bottom: 4px solid var(--saffron-500);
+}
+.ds-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-color: rgba(5,19,42,.35);
+  background-image: radial-gradient(ellipse 55% 70% at 85% 50%, rgba(26,94,168,.5) 0%, transparent 65%);
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: rgba(247,148,29,.15);
+  border: 1px solid rgba(247,148,29,.35);
+  border-radius: var(--r-pill);
+  padding: var(--sp-2) var(--sp-4);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--saffron-300);
+  margin-bottom: var(--sp-6);
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--saffron-500);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 700; letter-spacing: 0.04em;
+  color: #fff; line-height: 1.05;
+  margin-bottom: var(--sp-5);
+}
+.hero-title span { color: var(--saffron-400); }
+.hero-sub {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 2vw, 18px);
+  color: rgba(255,255,255,.7);
+  max-width: 520px; line-height: 1.75;
+  margin-bottom: var(--sp-8);
+}
+.hero-chips { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+.hero-chip {
+  padding: var(--sp-2) var(--sp-4);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 500; color: rgba(255,255,255,.85);
+}
+.hero-divider {
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, var(--saffron-500), transparent);
+  margin: var(--sp-8) 0 0;
+}
+
+/* ============================================================
+   COLOR SECTION
+   ============================================================ */
+.palette-hero {
+  display: flex; height: 80px;
+  border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--sp-8);
+  box-shadow: var(--shadow-sm);
+}
+.ph-seg {
+  display: flex; align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 0 var(--sp-2) var(--sp-3);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+.ramp-block { margin-bottom: var(--sp-8); }
+.ramp-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+.ramp-name { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--blue-800); }
+.ramp-hex  { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-secondary); }
+.ramp-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 10px;
+  border-radius: var(--r-pill);
+}
+.rb-primary  { background: var(--blue-100); color: var(--blue-700); }
+.rb-accent   { background: var(--saffron-100); color: var(--saffron-700); }
+.rb-neutral  { background: var(--neutral-200); color: var(--neutral-700); }
+
+.swatches {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+}
+.sw {
+  aspect-ratio: 1/1.5;
+  display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 5px 4px 4px;
+  transition: transform var(--dur-fast) var(--ease);
+  cursor: default;
+}
+.sw:hover { transform: scaleY(1.05); z-index: 2; }
+.sw-stop { font-size: 9px; font-weight: 700; opacity: 0.5; line-height: 1; }
+.sw-hex  { font-family: var(--font-mono); font-size: 8px; opacity: 0.45; }
+.sw-l .sw-stop, .sw-l .sw-hex { color: #000; }
+.sw-d .sw-stop, .sw-d .sw-hex { color: #fff; }
+.sw-star { outline: 3px solid white; outline-offset: -3px; }
+
+/* Token grid */
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+.token-chip {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-xs);
+}
+.token-dot { width: 32px; height: 32px; border-radius: var(--r-sm); flex-shrink: 0; }
+.token-name { font-size: 11px; font-weight: 600; color: var(--color-text-secondary); font-family: var(--font-mono); }
+.token-val  { font-size: 11px; color: var(--color-text-muted); font-family: var(--font-mono); }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.type-row {
+  display: flex; align-items: baseline; gap: var(--sp-5);
+  padding: var(--sp-5) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { width: 130px; flex-shrink: 0; }
+.type-tag  { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); }
+.type-spec { font-size: 11px; color: var(--color-text-muted); font-family: var(--font-mono); margin-top: 2px; }
+.type-sample { flex: 1; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: 11px 22px;
+  font-family: var(--font-ui); font-size: 14px; font-weight: 500;
+  letter-spacing: 0.02em; white-space: nowrap;
+  border: none; cursor: pointer; border-radius: var(--r-md);
+  transition: all var(--dur-med) var(--ease);
+  text-decoration: none;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--blue-500); color: #fff;
+  box-shadow: var(--shadow-blue);
+}
+.btn-primary:hover { background: var(--blue-600); box-shadow: 0 6px 24px rgba(26,94,168,.35); color: #fff; }
+
+.btn-accent {
+  background: var(--saffron-500); color: #fff;
+  box-shadow: var(--shadow-saffron);
+}
+.btn-accent:hover { background: var(--saffron-600); box-shadow: 0 6px 24px rgba(247,148,29,.4); color: #fff; }
+
+.btn-outline-blue {
+  background: transparent; color: var(--blue-500);
+  border: 1.5px solid var(--blue-300);
+}
+.btn-outline-blue:hover { background: var(--blue-50); border-color: var(--blue-500); color: var(--blue-600); }
+
+.btn-outline-saffron {
+  background: transparent; color: var(--saffron-700);
+  border: 1.5px solid var(--saffron-300);
+}
+.btn-outline-saffron:hover { background: var(--saffron-50); border-color: var(--saffron-500); color: var(--saffron-700); }
+
+.btn-ghost {
+  background: transparent; color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+.btn-ghost:hover { background: var(--neutral-100); color: var(--color-text-primary); }
+
+.btn-dark {
+  background: var(--blue-800); color: #fff;
+}
+.btn-dark:hover { background: var(--blue-900); color: #fff; }
+
+.btn-sm { padding: 7px 16px; font-size: 12px; }
+.btn-lg { padding: 14px 32px; font-size: 16px; font-weight: 600; }
+.btn-xl { padding: 18px 40px; font-size: 17px; font-weight: 600; letter-spacing: 0.04em; }
+.btn-pill { border-radius: var(--r-pill); }
+.btn-icon { width: 40px; height: 40px; padding: 0; justify-content: center; border-radius: var(--r-md); }
+.btn-icon-round { width: 40px; height: 40px; padding: 0; justify-content: center; border-radius: 50%; }
+
+.btn-group { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; margin-top: var(--sp-5); }
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: var(--r-pill);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.badge-blue     { background: var(--blue-100);     color: var(--blue-700); }
+.badge-blue-dark{ background: var(--blue-800);     color: var(--blue-100); }
+.badge-saffron  { background: var(--saffron-100);  color: var(--saffron-800); }
+.badge-saffron-dark { background: var(--saffron-500); color: #fff; }
+.badge-neutral  { background: var(--neutral-200);  color: var(--neutral-700); }
+.badge-white    { background: #fff; color: var(--blue-700); border: 1px solid var(--blue-100); }
+
+.badge-group { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-4); }
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-5); margin-top: var(--sp-5);
+}
+.form-group { display: flex; flex-direction: column; gap: var(--sp-2); }
+.form-label {
+  font-size: 13px; font-weight: 600;
+  color: var(--blue-700); letter-spacing: 0.01em;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 11px 14px;
+  font-family: var(--font-ui); font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(26,94,168,.14);
+}
+.form-input::placeholder { color: var(--color-text-muted); }
+.form-hint { font-size: 12px; color: var(--color-text-muted); }
+.form-textarea { resize: vertical; min-height: 110px; line-height: 1.65; }
+.form-error { border-color: #C0392B !important; }
+.form-error-msg { font-size: 12px; color: #C0392B; }
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-5); margin-top: var(--sp-5);
+}
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--dur-med) var(--ease), transform var(--dur-med) var(--ease);
+}
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.card-accent-bar { height: 4px; }
+.cab-blue    { background: var(--blue-500); }
+.cab-saffron { background: var(--saffron-500); }
+.cab-gradient{ background: linear-gradient(90deg, var(--blue-500), var(--saffron-500)); }
+
+.card-body { padding: var(--sp-5) var(--sp-6); }
+.card-icon {
+  width: 48px; height: 48px; border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: var(--sp-4);
+}
+.ci-blue    { background: var(--blue-50); }
+.ci-saffron { background: var(--saffron-50); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600;
+  color: var(--blue-800); margin-bottom: var(--sp-2);
+  letter-spacing: 0.02em;
+}
+.card-text {
+  font-family: var(--font-serif);
+  font-size: 14px; color: var(--color-text-secondary);
+  line-height: 1.7; margin-bottom: var(--sp-4);
+}
+.card-footer {
+  padding: var(--sp-3) var(--sp-6);
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-meta { font-size: 12px; color: var(--color-text-muted); }
+
+/* Blue card variant */
+.card-blue {
+  background: var(--blue-500); border-color: var(--blue-600);
+  color: #fff;
+}
+.card-blue .card-title { color: #fff; }
+.card-blue .card-text  { color: rgba(255,255,255,.78); }
+.card-blue .card-footer { border-color: rgba(255,255,255,.15); }
+.card-blue .card-meta { color: rgba(255,255,255,.5); }
+
+/* Dark card variant */
+.card-dark {
+  background: var(--blue-800); border-color: var(--blue-900);
+}
+.card-dark .card-title { color: #fff; }
+.card-dark .card-text  { color: rgba(255,255,255,.68); }
+
+/* Quote card */
+.card-quote {
+  border-left: 4px solid var(--saffron-500);
+  background: var(--saffron-50);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--saffron-100);
+  border-left: 4px solid var(--saffron-500);
+  padding: var(--sp-6) var(--sp-8);
+  position: relative;
+}
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 72px; line-height: 1;
+  color: var(--saffron-200); display: block;
+  margin-bottom: var(--sp-2);
+  height: 48px; overflow: hidden;
+  user-select: none;
+}
+.card-quote blockquote {
+  font-family: var(--font-serif);
+  font-size: 18px; font-style: italic;
+  color: var(--blue-700); line-height: 1.7;
+  margin-bottom: var(--sp-4);
+}
+.card-quote cite {
+  font-size: 13px; color: var(--saffron-700);
+  font-style: normal; font-weight: 600;
+  display: flex; align-items: center; gap: var(--sp-2);
+}
+.card-quote cite::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 2px;
+  background: var(--saffron-400);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* Stat card */
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5) var(--sp-6);
+  box-shadow: var(--shadow-sm);
+}
+.stat-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--color-text-muted);
+  margin-bottom: var(--sp-2);
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 42px; font-weight: 700;
+  color: var(--blue-800); line-height: 1;
+  letter-spacing: -0.01em;
+}
+.stat-value-accent { color: var(--saffron-500); }
+.stat-change { font-size: 12px; margin-top: var(--sp-2); font-weight: 500; }
+.sc-up   { color: #1A7A4A; }
+.sc-down { color: #B52B2B; }
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+.alert-stack { display: flex; flex-direction: column; gap: var(--sp-3); margin-top: var(--sp-5); }
+.alert {
+  display: flex; gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--r-md);
+  border-left: 3px solid transparent;
+  font-size: 14px;
+}
+.alert-icon { font-size: 20px; flex-shrink: 0; line-height: 1.4; }
+.alert-body { flex: 1; }
+.alert-title { font-weight: 600; margin-bottom: 2px; }
+.alert-desc  { font-size: 13px; opacity: 0.85; }
+
+.alert-info    { background: var(--blue-50);     border-color: var(--blue-500);    color: var(--blue-700); }
+.alert-sacred  { background: var(--saffron-50);  border-color: var(--saffron-500); color: var(--saffron-800); }
+.alert-success { background: #EDF7F1; border-color: #2ECC71; color: #1A6B3A; }
+.alert-warning { background: #FEF9E7; border-color: #F39C12; color: #8B5E04; }
+.alert-error   { background: #FDEDEC; border-color: #E74C3C; color: #922B21; }
+
+/* ============================================================
+   AVATARS
+   ============================================================ */
+.avatar-group { display: flex; }
+.avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 3px solid var(--neutral-0);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600;
+  font-family: var(--font-ui);
+  margin-left: -10px; box-shadow: var(--shadow-sm);
+}
+.avatar:first-child { margin-left: 0; }
+.av-blue    { background: var(--blue-500);    color: #fff; }
+.av-blue2   { background: var(--blue-300);    color: var(--blue-900); }
+.av-saffron { background: var(--saffron-500); color: #fff; }
+.av-light   { background: var(--blue-100);    color: var(--blue-700); }
+.av-neutral { background: var(--neutral-300); color: var(--neutral-700); }
+.av-more    { background: var(--neutral-100); color: var(--neutral-600); font-size: 12px; }
+
+/* ============================================================
+   PROGRESS BARS
+   ============================================================ */
+.progress-stack { display: flex; flex-direction: column; gap: var(--sp-5); margin-top: var(--sp-5); }
+.prog-row { display: flex; flex-direction: column; gap: var(--sp-2); }
+.prog-header { display: flex; justify-content: space-between; }
+.prog-title { font-size: 13px; font-weight: 500; color: var(--blue-700); }
+.prog-pct   { font-size: 12px; font-family: var(--font-mono); color: var(--color-text-muted); }
+.prog-track {
+  height: 8px; background: var(--neutral-200);
+  border-radius: var(--r-pill); overflow: hidden;
+}
+.prog-fill { height: 100%; border-radius: var(--r-pill); }
+.pf-blue    { background: var(--blue-500); }
+.pf-saffron { background: var(--saffron-500); }
+.pf-gradient{ background: linear-gradient(90deg, var(--blue-500), var(--saffron-500)); }
+.pf-dark    { background: var(--blue-800); }
+
+/* ============================================================
+   TABS
+   ============================================================ */
+.tab-bar {
+  display: flex; gap: 2px;
+  background: var(--blue-50);
+  padding: 4px; border-radius: var(--r-md);
+  width: fit-content; margin-top: var(--sp-5);
+  border: 1px solid var(--blue-100);
+}
+.tab-item {
+  padding: 8px 18px; border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; color: var(--blue-500);
+  transition: all var(--dur-fast) var(--ease);
+  user-select: none; white-space: nowrap;
+}
+.tab-item.active {
+  background: var(--blue-500); color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.tab-item:not(.active):hover { background: var(--blue-100); }
+
+/* ============================================================
+   DIVIDERS
+   ============================================================ */
+.divider { height: 1px; background: var(--color-border); margin: var(--sp-8) 0; }
+.divider-ornamental {
+  display: flex; align-items: center; gap: var(--sp-5);
+  margin: var(--sp-10) 0; color: var(--saffron-400);
+}
+.divider-ornamental::before,
+.divider-ornamental::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue-200));
+}
+.divider-ornamental::after { background: linear-gradient(90deg, var(--blue-200), transparent); }
+.divider-ornamental-icon { font-size: 16px; color: var(--saffron-500); }
+
+/* ============================================================
+   SPACING SCALE
+   ============================================================ */
+.spacing-rows { display: flex; flex-direction: column; gap: var(--sp-3); margin-top: var(--sp-5); }
+.sp-row { display: flex; align-items: center; gap: var(--sp-4); }
+.sp-label { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-secondary); width: 100px; flex-shrink: 0; }
+.sp-bar-wrap { flex: 1; }
+.sp-bar { height: 20px; border-radius: var(--r-sm); background: var(--blue-500); opacity: 0.18; }
+.sp-bar-inner { height: 20px; border-radius: var(--r-sm); background: var(--blue-500); }
+.sp-val { font-family: var(--font-mono); font-size: 12px; color: var(--blue-600); width: 36px; text-align: right; flex-shrink: 0; }
+
+/* ============================================================
+   RADIUS SCALE
+   ============================================================ */
+.radius-row { display: flex; flex-wrap: wrap; gap: var(--sp-6); margin-top: var(--sp-5); align-items: flex-end; }
+.r-box {
+  background: var(--blue-50); border: 2px solid var(--blue-300);
+  width: 80px; height: 80px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px;
+}
+.r-box-label { font-size: 11px; font-family: var(--font-mono); color: var(--blue-600); text-align: center; }
+
+/* ============================================================
+   SHADOW SCALE
+   ============================================================ */
+.shadow-row { display: flex; flex-wrap: wrap; gap: var(--sp-6); margin-top: var(--sp-5); }
+.s-box {
+  background: var(--color-surface);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5) var(--sp-6);
+  width: 140px; text-align: center;
+}
+.s-label { font-size: 11px; font-family: var(--font-mono); color: var(--color-text-muted); margin-top: var(--sp-2); }
+
+/* ============================================================
+   COMPOSED COMPONENTS
+   ============================================================ */
+
+/* Nav / Sidebar */
+.sidebar-demo {
+  background: var(--blue-800);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-3);
+  width: 220px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.sb-section {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--saffron-400);
+  padding: var(--sp-4) var(--sp-3) var(--sp-2);
+}
+.sb-item {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: 9px var(--sp-3); border-radius: var(--r-md);
+  font-size: 13px; color: rgba(255,255,255,.65);
+  cursor: pointer; transition: all var(--dur-fast) var(--ease);
+  text-decoration: none;
+}
+.sb-item:hover { background: rgba(255,255,255,.08); color: #fff; }
+.sb-item.active {
+  background: var(--saffron-500);
+  color: #fff; font-weight: 500;
+}
+.sb-icon { font-size: 15px; }
+
+/* Profile card */
+.profile-card {
+  max-width: 340px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-xl); overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.profile-banner {
+  height: 72px;
+  background: linear-gradient(135deg, var(--blue-500) 0%, var(--blue-700) 60%, var(--blue-900) 100%);
+  position: relative;
+}
+.profile-banner-accent {
+  position: absolute; bottom: 0; right: 0;
+  width: 120px; height: 72px;
+  background: linear-gradient(135deg, transparent, rgba(247,148,29,.3));
+}
+.profile-avatar-wrap { padding: 0 var(--sp-5); margin-top: -28px; }
+.profile-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 3px solid white; box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, var(--blue-400), var(--saffron-400));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff;
+}
+.profile-body { padding: var(--sp-3) var(--sp-5) var(--sp-5); }
+.profile-name {
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+  color: var(--blue-800); letter-spacing: 0.02em;
+}
+.profile-role { font-size: 12px; color: var(--saffron-600); font-weight: 600; margin-top: 2px; }
+.profile-bio  { font-family: var(--font-serif); font-size: 13px; color: var(--color-text-secondary); margin-top: var(--sp-3); line-height: 1.65; }
+.profile-stats {
+  display: flex; gap: var(--sp-5); margin-top: var(--sp-4);
+  padding-top: var(--sp-4); border-top: 1px solid var(--color-border-subtle);
+}
+.ps-item { text-align: center; }
+.ps-num {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  color: var(--blue-700); line-height: 1;
+}
+.ps-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-top: 2px; }
+
+/* Tooltip */
+.tooltip-row { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-5); align-items: center; }
+.tooltip-wrap { position: relative; display: inline-block; }
+.tooltip-wrap:hover .tooltip-box { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.tooltip-box {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--blue-900); color: #fff;
+  font-size: 12px; padding: 6px 12px;
+  border-radius: var(--r-sm); white-space: nowrap;
+  pointer-events: none; opacity: 0;
+  transition: all var(--dur-fast) var(--ease); z-index: 10;
+}
+.tooltip-box::after {
+  content: ''; position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--blue-900);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.ds-footer {
+  background: var(--blue-900);
+  border-top: 4px solid var(--saffron-500);
+  padding: var(--sp-12) 0;
+  text-align: center;
+}
+.footer-title {
+  font-family: var(--font-display); font-size: 22px; font-weight: 600;
+  letter-spacing: 0.08em; color: #fff; margin-bottom: var(--sp-3);
+}
+.footer-title span { color: var(--saffron-400); }
+.footer-sub { font-size: 13px; color: rgba(255,255,255,.45); }
+.footer-divider {
+  width: 60px; height: 2px; background: var(--saffron-500);
+  margin: var(--sp-5) auto;
+}
+/* ============================================================
+   COLOR VISUAL EXAMPLES
+   ============================================================ */
+.vex-section { margin-top: var(--sp-10); }
+.vex-title {
+  font-family: var(--font-display); font-size: 22px; font-weight: 600;
+  color: var(--blue-800); letter-spacing: .02em;
+  margin-bottom: var(--sp-2);
+}
+.vex-desc {
+  font-family: var(--font-serif); font-size: 15px;
+  color: var(--color-text-secondary); margin-bottom: var(--sp-6); max-width: 560px;
+}
+
+/* Mini nav mockup */
+.vex-nav {
+  background: var(--blue-500); border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 0 var(--sp-6); display: flex; align-items: center;
+  justify-content: space-between; height: 52px;
+  box-shadow: var(--shadow-blue);
+}
+.vex-nav-logo { display: flex; align-items: center; gap: var(--sp-3); }
+.vex-nav-dot  { width: 28px; height: 28px; border-radius: 50%; background: var(--saffron-500); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; font-family: var(--font-display); }
+.vex-nav-name { font-family: var(--font-display); font-size: 14px; font-weight: 600; letter-spacing: .08em; color: #fff; }
+.vex-nav-links { display: flex; gap: 4px; }
+.vex-nav-link { font-size: 12px; font-weight: 500; color: rgba(255,255,255,.75); padding: 5px 12px; border-radius: var(--r-sm); }
+.vex-nav-link.vex-active { color: var(--saffron-300); }
+.vex-nav-link:hover { background: rgba(255,255,255,.1); }
+.vex-nav-btn { font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: var(--r-pill); background: var(--saffron-500); color: #fff; border: none; cursor: pointer; font-family: var(--font-ui); }
+
+/* Mini page body */
+.vex-body {
+  background: var(--neutral-50); border: 1px solid var(--color-border);
+  border-top: none; border-radius: 0 0 var(--r-lg) var(--r-lg);
+  padding: var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-5);
+}
+
+/* Hero strip mockup */
+.vex-hero-strip {
+  background: var(--blue-800); border-radius: var(--r-md);
+  padding: var(--sp-6) var(--sp-7); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-5);
+}
+.vex-hero-text {}
+.vex-hero-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--saffron-400); margin-bottom: 6px; }
+.vex-hero-h { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; line-height: 1.2; }
+.vex-hero-sub { font-family: var(--font-serif); font-size: 12px; color: rgba(255,255,255,.65); margin-top: 6px; line-height: 1.6; }
+.vex-hero-btns { display: flex; gap: var(--sp-2); flex-shrink: 0; }
+.vex-btn-primary { font-size: 11px; font-weight: 600; padding: 8px 16px; border-radius: var(--r-md); background: var(--saffron-500); color: #fff; border: none; cursor: pointer; font-family: var(--font-ui); white-space: nowrap; }
+.vex-btn-outline { font-size: 11px; font-weight: 500; padding: 8px 16px; border-radius: var(--r-md); background: transparent; color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.25); cursor: pointer; font-family: var(--font-ui); white-space: nowrap; }
+
+/* Cards row mockup */
+.vex-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+.vex-card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--r-md); overflow: hidden; }
+.vex-card-bar { height: 3px; }
+.vex-card-bar-blue    { background: var(--blue-500); }
+.vex-card-bar-saffron { background: var(--saffron-500); }
+.vex-card-bar-grad    { background: linear-gradient(90deg, var(--blue-500), var(--saffron-500)); }
+.vex-card-inner { padding: var(--sp-4); }
+.vex-card-icon { width: 32px; height: 32px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 14px; margin-bottom: var(--sp-3); }
+.vex-card-icon-b { background: var(--blue-50); }
+.vex-card-icon-s { background: var(--saffron-50); }
+.vex-card-h { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--blue-800); margin-bottom: 4px; }
+.vex-card-p { font-size: 11px; color: var(--color-text-secondary); line-height: 1.55; }
+.vex-card-foot { padding: var(--sp-2) var(--sp-4); border-top: 1px solid var(--neutral-100); display: flex; justify-content: flex-end; }
+.vex-link { font-size: 11px; font-weight: 600; color: var(--blue-500); }
+
+/* Colour-in-context badges/form row */
+.vex-misc { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
+.vex-badge { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: var(--r-pill); }
+.vex-badge-blue    { background: var(--blue-100);    color: var(--blue-700); }
+.vex-badge-saffron { background: var(--saffron-100); color: var(--saffron-800); }
+.vex-badge-dark    { background: var(--blue-800);    color: var(--blue-100); }
+.vex-badge-neutral { background: var(--neutral-200); color: var(--neutral-700); }
+.vex-input { font-size: 12px; font-family: var(--font-ui); padding: 7px 12px; border: 1.5px solid var(--color-border); border-radius: var(--r-md); outline: none; background: #fff; color: var(--color-text-primary); }
+.vex-input:focus { border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(26,94,168,.12); }
+.vex-progress { flex: 1; min-width: 140px; }
+.vex-prog-track { height: 7px; background: var(--neutral-200); border-radius: var(--r-pill); overflow: hidden; }
+.vex-prog-fill-b { height: 100%; border-radius: var(--r-pill); background: var(--blue-500); }
+.vex-prog-fill-s { height: 100%; border-radius: var(--r-pill); background: var(--saffron-500); }
+.vex-prog-lbl { font-size: 10px; color: var(--color-text-muted); margin-bottom: 4px; font-weight: 500; }
+
+/* Annotated contrast swatches */
+.vex-contrast-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--sp-3); margin-top: var(--sp-6); }
+.vex-contrast-chip {
+  border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid var(--color-border); box-shadow: var(--shadow-xs);
+}
+.vex-contrast-top {
+  height: 64px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 3px;
+}
+.vex-contrast-sample { font-family: var(--font-display); font-size: 20px; font-weight: 600; }
+.vex-contrast-sub { font-size: 10px; font-weight: 500; opacity: .75; }
+.vex-contrast-bottom {
+  padding: 8px 10px; background: var(--neutral-50);
+  border-top: 1px solid var(--color-border);
+}
+.vex-contrast-label { font-size: 10px; font-weight: 700; color: var(--color-text-secondary); letter-spacing: .04em; }
+.vex-contrast-hex   { font-family: var(--font-mono); font-size: 9px; color: var(--color-text-muted); margin-top: 1px; }
+.vex-contrast-pass  { display: inline-flex; align-items: center; gap: 3px; font-size: 9px; font-weight: 700; color: #1A7A4A; margin-top: 3px; }
+
+/* Print / marketing mockup */
+.vex-print { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+.vex-poster {
+  border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+}
+.vex-poster-top { padding: var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-3); }
+.vex-poster-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.vex-poster-h { font-family: var(--font-display); font-size: 18px; font-weight: 700; line-height: 1.2; }
+.vex-poster-sub { font-family: var(--font-serif); font-size: 11px; line-height: 1.6; opacity: .8; }
+.vex-poster-bottom { padding: var(--sp-4) var(--sp-6); display: flex; justify-content: space-between; align-items: center; }
+.vex-poster-date { font-size: 10px; font-weight: 600; letter-spacing: .06em; }
+.vex-poster-btn { font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: var(--r-pill); border: none; cursor: pointer; font-family: var(--font-ui); }
+
+/* Social card mockup */
+.vex-social {
+  border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
+}
+.vex-social-top { padding: var(--sp-5) var(--sp-5) var(--sp-4); flex: 1; }
+.vex-social-quote { font-family: var(--font-serif); font-size: 13px; font-style: italic; line-height: 1.65; }
+.vex-social-attr { font-size: 10px; font-weight: 600; margin-top: var(--sp-3); display: flex; align-items: center; gap: 6px; }
+.vex-social-attr::before { content: ''; width: 16px; height: 1.5px; background: currentColor; display: inline-block; border-radius: 1px; flex-shrink: 0; }
+.vex-social-bar { height: 5px; display: flex; }
+.vex-social-bar-b { flex: 2; background: var(--blue-500); }
+.vex-social-bar-s { flex: 1; background: var(--saffron-500); }
+
+.usage-context {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-4);
+  margin-top: var(--sp-6);
+}
+.uc-card {
+  border-radius: var(--r-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-xs);
+}
+.uc-header {
+  padding: var(--sp-4) var(--sp-5);
+  display: flex; align-items: center; gap: var(--sp-3);
+}
+.uc-swatch {
+  width: 40px; height: 40px; border-radius: var(--r-md); flex-shrink: 0;
+}
+.uc-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: .02em; }
+.uc-sub   { font-size: 11px; margin-top: 1px; opacity: .7; font-family: var(--font-mono); }
+.uc-body  { padding: 0 var(--sp-5) var(--sp-5); }
+.uc-use-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); }
+.uc-use-item {
+  display: flex; align-items: flex-start; gap: var(--sp-3);
+  font-size: 13px; line-height: 1.5;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-subtle);
+}
+.uc-use-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; padding: 2px 7px;
+  border-radius: var(--r-pill); flex-shrink: 0; margin-top: 1px;
+}
+.uc-use-desc { color: var(--color-text-secondary); }
+.uc-divider { height: 1px; background: var(--color-border-subtle); margin: var(--sp-3) 0; }
+.uc-avoid {
+  font-size: 12px; color: var(--color-text-muted);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--color-border-subtle);
+  display: flex; gap: var(--sp-2); align-items: flex-start;
+}
+.uc-avoid-x { font-size: 11px; color: #B52B2B; font-weight: 700; flex-shrink: 0; }
+
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="ds-nav">
+  <div class="ds-container">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">
+        <div class="nav-logo-icon">S</div>
+        <span class="nav-logo-text">Sri Sathya Sai Center of Austin</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#colors">Colors</a></li>
+        <li><a href="#typography">Type</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#patterns">Patterns</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="ds-hero">
+  <div class="ds-container">
+    <div class="hero-inner">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Official Design System</div>
+      <h1 class="hero-title">Sri Sathya Sai<br><span>Center of Austin</span></h1>
+      <p class="hero-sub">The official visual language of Sri Sathya Sai Center of Austin — Royal Blue and Saffron Orange — standardised for consistent use across web, marketing materials, and print.</p>
+      <div class="hero-chips">
+        <span class="hero-chip">Royal Blue #1A5EA8</span>
+        <span class="hero-chip">Saffron Orange #F7941D</span>
+        <span class="hero-chip">Pure White #FFFFFF</span>
+        <span class="hero-chip">3 Fonts · 10-stop Ramps · Full Token Set</span>
+      </div>
+      <div class="hero-divider"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ COLORS ══════════════════ -->
+<section class="ds-section" id="colors">
+  <div class="ds-container">
+    <div class="sec-eyebrow">Foundation</div>
+    <h2 class="sec-title">Color Palette</h2>
+    <p class="sec-desc">Three core colors, each expanded into a full 10-stop ramp. Every shade you need — from page backgrounds and subtle dividers through to bold CTAs and dark footers.</p>
+
+    <!-- Hero strip -->
+    <div class="palette-hero" style="margin-top:var(--sp-8)">
+      <div class="ph-seg" style="background:var(--blue-900);color:rgba(255,255,255,.4);flex:1">900</div>
+      <div class="ph-seg" style="background:var(--blue-800);color:rgba(255,255,255,.5);flex:1">800</div>
+      <div class="ph-seg" style="background:var(--blue-700);color:rgba(255,255,255,.6);flex:1">700</div>
+      <div class="ph-seg" style="background:var(--blue-600);color:rgba(255,255,255,.7);flex:1">600</div>
+      <div class="ph-seg" style="background:var(--blue-500);color:#fff;flex:2">★ Blue</div>
+      <div class="ph-seg" style="background:var(--saffron-500);color:#fff;flex:2">★ Saffron</div>
+      <div class="ph-seg" style="background:var(--saffron-400);color:rgba(255,255,255,.7);flex:1">400</div>
+      <div class="ph-seg" style="background:var(--saffron-300);color:rgba(255,255,255,.6);flex:1">300</div>
+      <div class="ph-seg" style="background:var(--saffron-200);color:#B05E08;flex:1">200</div>
+      <div class="ph-seg" style="background:var(--saffron-100);color:#B05E08;flex:1">100</div>
+      <div class="ph-seg" style="background:var(--saffron-50);color:#D97A10;flex:1">50</div>
+      <div class="ph-seg" style="background:#fff;color:#aaa;flex:1;border-left:1px solid var(--color-border)">White</div>
+    </div>
+
+    <!-- BLUE RAMP -->
+    <div class="ramp-block">
+      <div class="ramp-header">
+        <span class="ramp-name">Royal Blue</span>
+        <div style="display:flex;align-items:center;gap:var(--sp-3)">
+          <span class="ramp-hex">#1A5EA8</span>
+          <span class="ramp-badge rb-primary">Primary Brand</span>
+        </div>
+      </div>
+      <div class="swatches">
+        <div class="sw sw-l" style="background:var(--blue-50)"><span class="sw-stop">50</span><span class="sw-hex">#EAF1FA</span></div>
+        <div class="sw sw-l" style="background:var(--blue-100)"><span class="sw-stop">100</span><span class="sw-hex">#C3D9F2</span></div>
+        <div class="sw sw-l" style="background:var(--blue-200)"><span class="sw-stop">200</span><span class="sw-hex">#90BBE7</span></div>
+        <div class="sw sw-d" style="background:var(--blue-300)"><span class="sw-stop">300</span><span class="sw-hex">#5A97D4</span></div>
+        <div class="sw sw-d" style="background:var(--blue-400)"><span class="sw-stop">400</span><span class="sw-hex">#3078BE</span></div>
+        <div class="sw sw-d sw-star" style="background:var(--blue-500)"><span class="sw-stop" style="opacity:1;color:#fff">★500</span><span class="sw-hex" style="color:#fff">#1A5EA8</span></div>
+        <div class="sw sw-d" style="background:var(--blue-600)"><span class="sw-stop">600</span><span class="sw-hex">#154D8A</span></div>
+        <div class="sw sw-d" style="background:var(--blue-700)"><span class="sw-stop">700</span><span class="sw-hex">#103B6A</span></div>
+        <div class="sw sw-d" style="background:var(--blue-800)"><span class="sw-stop">800</span><span class="sw-hex">#0A274A</span></div>
+        <div class="sw sw-d" style="background:var(--blue-900)"><span class="sw-stop">900</span><span class="sw-hex">#05132A</span></div>
+      </div>
+    </div>
+
+    <!-- SAFFRON RAMP -->
+    <div class="ramp-block">
+      <div class="ramp-header">
+        <span class="ramp-name">Saffron Orange</span>
+        <div style="display:flex;align-items:center;gap:var(--sp-3)">
+          <span class="ramp-hex">#F7941D</span>
+          <span class="ramp-badge rb-accent">Accent</span>
+        </div>
+      </div>
+      <div class="swatches">
+        <div class="sw sw-l" style="background:var(--saffron-50)"><span class="sw-stop">50</span><span class="sw-hex">#FEF5E8</span></div>
+        <div class="sw sw-l" style="background:var(--saffron-100)"><span class="sw-stop">100</span><span class="sw-hex">#FCE4BA</span></div>
+        <div class="sw sw-l" style="background:var(--saffron-200)"><span class="sw-stop">200</span><span class="sw-hex">#FACE86</span></div>
+        <div class="sw sw-l" style="background:var(--saffron-300)"><span class="sw-stop">300</span><span class="sw-hex">#F8B450</span></div>
+        <div class="sw sw-d" style="background:var(--saffron-400)"><span class="sw-stop">400</span><span class="sw-hex">#F7A435</span></div>
+        <div class="sw sw-d sw-star" style="background:var(--saffron-500)"><span class="sw-stop" style="opacity:1;color:#fff">★500</span><span class="sw-hex" style="color:#fff">#F7941D</span></div>
+        <div class="sw sw-d" style="background:var(--saffron-600)"><span class="sw-stop">600</span><span class="sw-hex">#D97A10</span></div>
+        <div class="sw sw-d" style="background:var(--saffron-700)"><span class="sw-stop">700</span><span class="sw-hex">#B05E08</span></div>
+        <div class="sw sw-d" style="background:var(--saffron-800)"><span class="sw-stop">800</span><span class="sw-hex">#854504</span></div>
+        <div class="sw sw-d" style="background:var(--saffron-900)"><span class="sw-stop">900</span><span class="sw-hex">#542A02</span></div>
+      </div>
+    </div>
+
+    <!-- NEUTRAL RAMP -->
+    <div class="ramp-block">
+      <div class="ramp-header">
+        <span class="ramp-name">Warm Neutral</span>
+        <div style="display:flex;align-items:center;gap:var(--sp-3)">
+          <span class="ramp-hex">Off-white to near-black</span>
+          <span class="ramp-badge rb-neutral">Backgrounds & Text</span>
+        </div>
+      </div>
+      <div class="swatches">
+        <div class="sw sw-l" style="background:#FFFFFF;border-right:1px solid var(--neutral-100)"><span class="sw-stop">0</span><span class="sw-hex">#FFFFFF</span></div>
+        <div class="sw sw-l" style="background:var(--neutral-50)"><span class="sw-stop">50</span><span class="sw-hex">#F9F7F4</span></div>
+        <div class="sw sw-l" style="background:var(--neutral-100)"><span class="sw-stop">100</span><span class="sw-hex">#F2EDE6</span></div>
+        <div class="sw sw-l" style="background:var(--neutral-200)"><span class="sw-stop">200</span><span class="sw-hex">#E8DFD0</span></div>
+        <div class="sw sw-l" style="background:var(--neutral-300)"><span class="sw-stop">300</span><span class="sw-hex">#D5C8B2</span></div>
+        <div class="sw sw-d" style="background:var(--neutral-400)"><span class="sw-stop">400</span><span class="sw-hex">#B8A88A</span></div>
+        <div class="sw sw-d" style="background:var(--neutral-500)"><span class="sw-stop">500</span><span class="sw-hex">#8C7C62</span></div>
+        <div class="sw sw-d" style="background:var(--neutral-600)"><span class="sw-stop">600</span><span class="sw-hex">#6B5C44</span></div>
+        <div class="sw sw-d" style="background:var(--neutral-700)"><span class="sw-stop">700</span><span class="sw-hex">#4E4030</span></div>
+        <div class="sw sw-d" style="background:var(--neutral-800)"><span class="sw-stop">800</span><span class="sw-hex">#342C22</span></div>
+      </div>
+    </div>
+
+    <!-- COLOR USAGE CONTEXT -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">When to use each color</h3>
+    <p style="font-family:var(--font-serif);font-size:15px;color:var(--color-text-secondary);margin-bottom:0;max-width:600px">Understanding the role of each color ensures consistency across every touchpoint — web, print, social media, and events.</p>
+
+    <div class="usage-context">
+
+      <!-- ROYAL BLUE -->
+      <div class="uc-card">
+        <div class="uc-header" style="background:var(--blue-50); border-bottom:1px solid var(--blue-100);">
+          <div class="uc-swatch" style="background:var(--blue-500);box-shadow:var(--shadow-blue)"></div>
+          <div>
+            <div class="uc-title" style="color:var(--blue-800)">Royal Blue</div>
+            <div class="uc-sub" style="color:var(--blue-600)">#1A5EA8 · Primary</div>
+          </div>
+        </div>
+        <div class="uc-body" style="padding-top:var(--sp-4)">
+          <ul class="uc-use-list">
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--blue-100);color:var(--blue-700)">Nav</span>
+              <span class="uc-use-desc">Navigation bar background, header, and sticky top bar on every page</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--blue-100);color:var(--blue-700)">CTA</span>
+              <span class="uc-use-desc">Primary call-to-action buttons — Register, Submit, Learn More</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--blue-100);color:var(--blue-700)">Links</span>
+              <span class="uc-use-desc">All hyperlinks, interactive text, and inline actions across web</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--blue-100);color:var(--blue-700)">Headings</span>
+              <span class="uc-use-desc">Section titles, card headings, and display text (Blue 800)</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--blue-100);color:var(--blue-700)">Print</span>
+              <span class="uc-use-desc">Report covers, event banners, letterheads, and brochure headers</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--blue-50);color:var(--blue-600)">Tint</span>
+              <span class="uc-use-desc">Blue 50 for info panel backgrounds, table rows, subtle section fills</span>
+            </li>
+          </ul>
+          <div class="uc-divider"></div>
+          <div class="uc-avoid">
+            <span class="uc-avoid-x">✕</span>
+            <span>Do not use as a background for large body content areas — reserve for structural and interactive elements only</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAFFRON ORANGE -->
+      <div class="uc-card">
+        <div class="uc-header" style="background:var(--saffron-50); border-bottom:1px solid var(--saffron-100);">
+          <div class="uc-swatch" style="background:var(--saffron-500);box-shadow:var(--shadow-saffron)"></div>
+          <div>
+            <div class="uc-title" style="color:var(--saffron-800)">Saffron Orange</div>
+            <div class="uc-sub" style="color:var(--saffron-600)">#F7941D · Accent</div>
+          </div>
+        </div>
+        <div class="uc-body" style="padding-top:var(--sp-4)">
+          <ul class="uc-use-list">
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--saffron-100);color:var(--saffron-800)">Accent</span>
+              <span class="uc-use-desc">Secondary buttons, badges, tags, and decorative highlights alongside blue</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--saffron-100);color:var(--saffron-800)">Icons</span>
+              <span class="uc-use-desc">Icon fills, bullet markers, and small decorative UI elements</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--saffron-100);color:var(--saffron-800)">Dividers</span>
+              <span class="uc-use-desc">Ornamental section dividers, quote borders, and card accent bars</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--saffron-100);color:var(--saffron-800)">Eyebrow</span>
+              <span class="uc-use-desc">Section labels, category tags, and overline text above headings</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--saffron-100);color:var(--saffron-800)">Print</span>
+              <span class="uc-use-desc">Poster highlights, pull-quote borders, and event programme accents</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--saffron-50);color:var(--saffron-700)">Tint</span>
+              <span class="uc-use-desc">Saffron 50 for quote card fills, notification backgrounds, warm highlights</span>
+            </li>
+          </ul>
+          <div class="uc-divider"></div>
+          <div class="uc-avoid">
+            <span class="uc-avoid-x">✕</span>
+            <span>Never use as the dominant color or equal weight to blue — saffron supports, it does not lead</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WARM NEUTRAL -->
+      <div class="uc-card">
+        <div class="uc-header" style="background:var(--neutral-100); border-bottom:1px solid var(--neutral-200);">
+          <div class="uc-swatch" style="background:var(--neutral-800);"></div>
+          <div>
+            <div class="uc-title" style="color:var(--neutral-800)">Warm Neutral</div>
+            <div class="uc-sub" style="color:var(--neutral-600)">#F9F7F4 → #342C22 · Foundation</div>
+          </div>
+        </div>
+        <div class="uc-body" style="padding-top:var(--sp-4)">
+          <ul class="uc-use-list">
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--neutral-200);color:var(--neutral-700)">Page bg</span>
+              <span class="uc-use-desc">Neutral 50 (#F9F7F4) for every page background — warm, never cold white</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--neutral-200);color:var(--neutral-700)">Cards</span>
+              <span class="uc-use-desc">Pure white (#FFFFFF) for card surfaces, modals, and content panels</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--neutral-200);color:var(--neutral-700)">Body text</span>
+              <span class="uc-use-desc">Neutral 800 for primary copy, Neutral 600 for secondary and captions</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--neutral-200);color:var(--neutral-700)">Borders</span>
+              <span class="uc-use-desc">Neutral 200 for dividers, card borders, input outlines across all surfaces</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--neutral-200);color:var(--neutral-700)">Disabled</span>
+              <span class="uc-use-desc">Neutral 300–400 for disabled states, placeholder text, and inactive items</span>
+            </li>
+            <li class="uc-use-item">
+              <span class="uc-use-label" style="background:var(--neutral-200);color:var(--neutral-700)">Print</span>
+              <span class="uc-use-desc">Neutral 800 for all body copy in documents, reports, and publications</span>
+            </li>
+          </ul>
+          <div class="uc-divider"></div>
+          <div class="uc-avoid">
+            <span class="uc-avoid-x">✕</span>
+            <span>Never use pure black (#000000) or cold grays — they break the warm tone of the palette</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEMANTIC TOKENS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em;margin-top:var(--sp-10)">Semantic Tokens</h3>
+    <p style="font-family:var(--font-serif);font-size:14px;color:var(--color-text-secondary)">Named CSS variables that tie color stops to a specific role — use these in code, never raw hex values.</p>
+    <div class="token-grid">
+      <div class="token-chip"><div class="token-dot" style="background:var(--blue-500)"></div><div><div class="token-name">--color-primary</div><div class="token-val">#1A5EA8 · Blue 500</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--blue-600)"></div><div><div class="token-name">--color-primary-dark</div><div class="token-val">#154D8A · Blue 600</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--blue-50)"></div><div><div class="token-name">--color-primary-tint</div><div class="token-val">#EAF1FA · Blue 50</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--saffron-500)"></div><div><div class="token-name">--color-accent</div><div class="token-val">#F7941D · Saffron 500</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--saffron-600)"></div><div><div class="token-name">--color-accent-dark</div><div class="token-val">#D97A10 · Saffron 600</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--saffron-50)"></div><div><div class="token-name">--color-accent-tint</div><div class="token-val">#FEF5E8 · Saffron 50</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:#F9F7F4;border:1px solid var(--neutral-200)"></div><div><div class="token-name">--color-bg</div><div class="token-val">#F9F7F4 · Neutral 50</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:#FFFFFF;border:1px solid var(--neutral-200)"></div><div><div class="token-name">--color-surface</div><div class="token-val">#FFFFFF · Card surface</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--neutral-200)"></div><div><div class="token-name">--color-border</div><div class="token-val">#E8DFD0 · Neutral 200</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--neutral-800)"></div><div><div class="token-name">--color-text-primary</div><div class="token-val">#342C22 · Neutral 800</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--neutral-600)"></div><div><div class="token-name">--color-text-secondary</div><div class="token-val">#6B5C44 · Neutral 600</div></div></div>
+      <div class="token-chip"><div class="token-dot" style="background:var(--neutral-400)"></div><div><div class="token-name">--color-text-muted</div><div class="token-val">#B8A88A · Neutral 400</div></div></div>
+    </div>
+    <!-- ═══ VISUAL EXAMPLES ═══ -->
+    <div class="vex-section">
+      <div class="vex-title">Visual Examples</div>
+      <p class="vex-desc">See each color in real context — from navigation and hero sections through to cards, badges, and print materials.</p>
+
+      <!-- 1. WEB UI MOCKUP -->
+      <p style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--sp-4)">01 — Website UI</p>
+      <div style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:var(--sp-8)">
+        <!-- Nav: Blue 500 -->
+        <div class="vex-nav">
+          <div class="vex-nav-logo">
+            <div class="vex-nav-dot">S</div>
+            <div class="vex-nav-name">Sai Austin</div>
+          </div>
+          <div class="vex-nav-links">
+            <span class="vex-nav-link vex-active">His Words</span>
+            <span class="vex-nav-link">Events</span>
+            <span class="vex-nav-link">Service</span>
+            <span class="vex-nav-link">Resources</span>
+          </div>
+          <button class="vex-nav-btn">Register</button>
+        </div>
+        <!-- Body: Neutral 50 bg -->
+        <div class="vex-body">
+          <!-- Hero: Blue 800 bg, Saffron accent -->
+          <div class="vex-hero-strip">
+            <div class="vex-hero-text">
+              <div class="vex-hero-eyebrow">12th World Conference · 2026</div>
+              <div class="vex-hero-h">Together in Truth,<br>Love and Service</div>
+              <div class="vex-hero-sub">Join thousands of devotees from over 90 countries<br>in a celebration of the five human values.</div>
+            </div>
+            <div class="vex-hero-btns">
+              <!-- Saffron CTA on dark blue hero -->
+              <button class="vex-btn-primary">Register Now</button>
+              <button class="vex-btn-outline">Learn More</button>
+            </div>
+          </div>
+          <!-- Content cards: White surface, Blue/Saffron accents -->
+          <div class="vex-cards">
+            <div class="vex-card">
+              <div class="vex-card-bar vex-card-bar-blue"></div>
+              <div class="vex-card-inner">
+                <div class="vex-card-icon vex-card-icon-b">✦</div>
+                <div class="vex-card-h">His Words</div>
+                <p class="vex-card-p">Timeless teachings and discourses by Bhagawan Sri Sathya Sai Baba.</p>
+              </div>
+              <div class="vex-card-foot"><span class="vex-link">Explore →</span></div>
+            </div>
+            <div class="vex-card">
+              <div class="vex-card-bar vex-card-bar-saffron"></div>
+              <div class="vex-card-inner">
+                <div class="vex-card-icon vex-card-icon-s">☀</div>
+                <div class="vex-card-h">Humanitarian Relief</div>
+                <p class="vex-card-p">Selfless service and love in action across 90 countries worldwide.</p>
+              </div>
+              <div class="vex-card-foot"><span class="vex-link">Learn more →</span></div>
+            </div>
+            <div class="vex-card">
+              <div class="vex-card-bar vex-card-bar-grad"></div>
+              <div class="vex-card-inner">
+                <div class="vex-card-icon vex-card-icon-b">◈</div>
+                <div class="vex-card-h">Young Adults</div>
+                <p class="vex-card-p">Youth living and sharing the five human values around the world.</p>
+              </div>
+              <div class="vex-card-foot"><span class="vex-link">Connect →</span></div>
+            </div>
+          </div>
+          <!-- Misc UI elements -->
+          <div class="vex-misc">
+            <!-- Badges using Blue 100/800 and Saffron 100 -->
+            <span class="vex-badge vex-badge-blue">Truth</span>
+            <span class="vex-badge vex-badge-saffron">Love</span>
+            <span class="vex-badge vex-badge-dark">Peace</span>
+            <span class="vex-badge vex-badge-neutral">Zone 5</span>
+            <!-- Input: border neutral, focus blue -->
+            <input class="vex-input" type="text" placeholder="Search discourses…">
+            <!-- Progress: blue fill on neutral track -->
+            <div class="vex-progress">
+              <div class="vex-prog-lbl">Seva Goal — 84%</div>
+              <div class="vex-prog-track"><div class="vex-prog-fill-b" style="width:84%"></div></div>
+            </div>
+            <div class="vex-progress">
+              <div class="vex-prog-lbl">Community — 62%</div>
+              <div class="vex-prog-track"><div class="vex-prog-fill-s" style="width:62%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. CONTRAST PAIRS -->
+      <p style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--sp-4)">02 — Approved colour pairings</p>
+      <div class="vex-contrast-grid" style="margin-top:0;margin-bottom:var(--sp-8)">
+
+        <div class="vex-contrast-chip">
+          <div class="vex-contrast-top" style="background:var(--blue-500)">
+            <span class="vex-contrast-sample" style="color:#fff">Aa</span>
+            <span class="vex-contrast-sub" style="color:rgba(255,255,255,.75)">White on Blue 500</span>
+          </div>
+          <div class="vex-contrast-bottom">
+            <div class="vex-contrast-label">Nav · Buttons · Headers</div>
+            <div class="vex-contrast-hex">#1A5EA8 bg · #FFFFFF text</div>
+            <div class="vex-contrast-pass">✓ WCAG AA · 4.6:1</div>
+          </div>
+        </div>
+
+        <div class="vex-contrast-chip">
+          <div class="vex-contrast-top" style="background:var(--blue-800)">
+            <span class="vex-contrast-sample" style="color:#fff">Aa</span>
+            <span class="vex-contrast-sub" style="color:rgba(255,255,255,.7)">White on Blue 800</span>
+          </div>
+          <div class="vex-contrast-bottom">
+            <div class="vex-contrast-label">Hero · Footer · Dark cards</div>
+            <div class="vex-contrast-hex">#0A274A bg · #FFFFFF text</div>
+            <div class="vex-contrast-pass">✓ WCAG AAA · 12.4:1</div>
+          </div>
+        </div>
+
+        <div class="vex-contrast-chip">
+          <div class="vex-contrast-top" style="background:var(--saffron-500)">
+            <span class="vex-contrast-sample" style="color:#fff">Aa</span>
+            <span class="vex-contrast-sub" style="color:rgba(255,255,255,.8)">White on Saffron</span>
+          </div>
+          <div class="vex-contrast-bottom">
+            <div class="vex-contrast-label">Accent buttons · Badges</div>
+            <div class="vex-contrast-hex">#F7941D bg · #FFFFFF text</div>
+            <div class="vex-contrast-pass">✓ WCAG AA · 3.0:1 (large)</div>
+          </div>
+        </div>
+
+        <div class="vex-contrast-chip">
+          <div class="vex-contrast-top" style="background:var(--blue-50)">
+            <span class="vex-contrast-sample" style="color:var(--blue-700)">Aa</span>
+            <span class="vex-contrast-sub" style="color:var(--blue-500)">Blue 700 on Blue 50</span>
+          </div>
+          <div class="vex-contrast-bottom">
+            <div class="vex-contrast-label">Info panels · Table rows</div>
+            <div class="vex-contrast-hex">#EAF1FA bg · #103B6A text</div>
+            <div class="vex-contrast-pass">✓ WCAG AA · 8.1:1</div>
+          </div>
+        </div>
+
+        <div class="vex-contrast-chip">
+          <div class="vex-contrast-top" style="background:var(--saffron-50)">
+            <span class="vex-contrast-sample" style="color:var(--saffron-700)">Aa</span>
+            <span class="vex-contrast-sub" style="color:var(--saffron-600)">Saffron 700 on 50</span>
+          </div>
+          <div class="vex-contrast-bottom">
+            <div class="vex-contrast-label">Quote cards · Notices</div>
+            <div class="vex-contrast-hex">#FEF5E8 bg · #B05E08 text</div>
+            <div class="vex-contrast-pass">✓ WCAG AA · 5.6:1</div>
+          </div>
+        </div>
+
+        <div class="vex-contrast-chip">
+          <div class="vex-contrast-top" style="background:#FFFFFF">
+            <span class="vex-contrast-sample" style="color:var(--neutral-800)">Aa</span>
+            <span class="vex-contrast-sub" style="color:var(--neutral-500)">Dark on White</span>
+          </div>
+          <div class="vex-contrast-bottom">
+            <div class="vex-contrast-label">Body text · Cards</div>
+            <div class="vex-contrast-hex">#FFFFFF bg · #342C22 text</div>
+            <div class="vex-contrast-pass">✓ WCAG AAA · 13.2:1</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. PRINT & MARKETING -->
+      <p style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--sp-4)">03 — Print &amp; marketing materials</p>
+      <div class="vex-print">
+
+        <!-- Event poster: Blue dominant, Saffron accent -->
+        <div class="vex-poster" style="background:var(--blue-800)">
+          <div class="vex-poster-top">
+            <div class="vex-poster-eyebrow" style="color:var(--saffron-400)">Sri Sathya Sai International Organization</div>
+            <div class="vex-poster-h" style="color:#fff">12th World<br>Conference</div>
+            <div class="vex-poster-sub" style="color:rgba(255,255,255,.7)">Celebrating five decades of love, selfless service, and unity across 90 nations.</div>
+            <!-- Saffron accent bar -->
+            <div style="height:2px;width:48px;background:var(--saffron-500);border-radius:1px"></div>
+          </div>
+          <div class="vex-poster-bottom" style="background:var(--blue-900)">
+            <span class="vex-poster-date" style="color:var(--saffron-400)">November 2026 · Global</span>
+            <button class="vex-poster-btn" style="background:var(--saffron-500);color:#fff">Register Free</button>
+          </div>
+        </div>
+
+        <!-- Social / quote card: Saffron tint bg, Blue text -->
+        <div style="display:flex;flex-direction:column;gap:var(--sp-4)">
+          <div class="vex-social" style="background:var(--saffron-50);border-color:var(--saffron-100)">
+            <div class="vex-social-top">
+              <div class="vex-social-quote" style="color:var(--blue-700)">"Help ever, hurt never. The goal of life is to merge with the divine through love and selfless service."</div>
+              <div class="vex-social-attr" style="color:var(--saffron-700)">Sri Sathya Sai Baba</div>
+            </div>
+            <div class="vex-social-bar">
+              <div class="vex-social-bar-b"></div>
+              <div class="vex-social-bar-s"></div>
+            </div>
+          </div>
+
+          <!-- Newsletter header: Blue surface, saffron eyebrow -->
+          <div class="vex-poster" style="background:#fff">
+            <div class="vex-poster-top">
+              <div class="vex-poster-eyebrow" style="color:var(--saffron-600)">Monthly Newsletter</div>
+              <div class="vex-poster-h" style="color:var(--blue-800)">The Eternal<br>Companion</div>
+              <div class="vex-poster-sub" style="color:var(--color-text-secondary)">Monthly magazine sharing Bhagawan's love, teachings, and global humanitarian services.</div>
+            </div>
+            <div class="vex-poster-bottom" style="background:var(--neutral-50);border-top:1px solid var(--color-border)">
+              <span class="vex-poster-date" style="color:var(--color-text-muted)">April 2026 · Vol 5</span>
+              <button class="vex-poster-btn" style="background:var(--blue-500);color:#fff">Read Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- ═══ END VISUAL EXAMPLES ═══ -->
+
+  </div>
+</section>
+<section class="ds-section" id="typography">
+  <div class="ds-container">
+    <div class="sec-eyebrow">Foundation</div>
+    <h2 class="sec-title">Typography</h2>
+    <p class="sec-desc">Three purposeful typefaces. Cinzel for ceremonial display, Source Serif 4 for editorial body text, Jost for clean UI elements.</p>
+
+    <div class="two-col" style="margin-top:var(--sp-8)">
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--sp-5)">Display · Cinzel</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">Display</div><div class="type-spec">64px / 700</div></div>
+            <div class="type-sample" style="font-family:var(--font-display);font-size:64px;font-weight:700;line-height:1;color:var(--blue-800)">Sai</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">H1</div><div class="type-spec">48px / 600</div></div>
+            <div class="type-sample" style="font-family:var(--font-display);font-size:48px;font-weight:600;color:var(--blue-800);line-height:1.1">Truth · Love</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">H2</div><div class="type-spec">36px / 600</div></div>
+            <div class="type-sample" style="font-family:var(--font-display);font-size:36px;font-weight:600;color:var(--blue-800)">Right Conduct</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">H3</div><div class="type-spec">26px / 500</div></div>
+            <div class="type-sample" style="font-family:var(--font-display);font-size:26px;font-weight:500;color:var(--blue-700)">Peace · Non-Violence</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">H4</div><div class="type-spec">20px / 500</div></div>
+            <div class="type-sample" style="font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--blue-700)">Five Human Values</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--sp-5)">Editorial · Source Serif 4</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">Lead</div><div class="type-spec">20px / 400 italic</div></div>
+            <div class="type-sample" style="font-family:var(--font-serif);font-size:20px;font-style:italic;color:var(--saffron-700);line-height:1.5">"Love all, serve all."</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">Body L</div><div class="type-spec">18px / 400</div></div>
+            <div class="type-sample" style="font-family:var(--font-serif);font-size:18px;color:var(--color-text-secondary);line-height:1.75">Service to humanity is the highest form of devotion to the divine.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">Body</div><div class="type-spec">16px / 400</div></div>
+            <div class="type-sample" style="font-family:var(--font-serif);font-size:16px;color:var(--color-text-secondary);line-height:1.75">Spread the fragrance of love wherever you go, and transform every heart you touch through selfless action.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">UI</div><div class="type-spec">14px / 500 Jost</div></div>
+            <div class="type-sample" style="font-size:14px;font-weight:500;color:var(--color-text-secondary)">Navigation label · button text · form label</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">Caption</div><div class="type-spec">12px / 400 Jost</div></div>
+            <div class="type-sample" style="font-size:12px;color:var(--color-text-muted)">Sri Sathya Sai Baba · Discourse, 1996</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><div class="type-tag">Label</div><div class="type-spec">10px / 700 UC</div></div>
+            <div class="type-sample" style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--saffron-600)">Section Eyebrow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ COMPONENTS ══════════════════ -->
+<section class="ds-section" id="components">
+  <div class="ds-container">
+    <div class="sec-eyebrow">Components</div>
+    <h2 class="sec-title">Core UI Components</h2>
+
+    <!-- BUTTONS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em;margin-top:var(--sp-8)">Buttons</h3>
+    <p style="font-family:var(--font-serif);font-size:14px;color:var(--color-text-secondary);margin-bottom:0">Six variants across three sizes plus icon, pill, and combined forms.</p>
+
+    <div class="btn-group">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-accent">Saffron</button>
+      <button class="btn btn-outline-blue">Outline Blue</button>
+      <button class="btn btn-outline-saffron">Outline Saffron</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-dark">Dark</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+      <button class="btn btn-primary btn-xl">Extra Large</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-pill">Pill Primary</button>
+      <button class="btn btn-accent btn-pill">Pill Accent</button>
+      <button class="btn btn-primary btn-icon">✦</button>
+      <button class="btn btn-accent btn-icon-round">☀</button>
+      <button class="btn btn-outline-blue btn-icon">⊕</button>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- BADGES -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Badges</h3>
+    <div class="badge-group">
+      <span class="badge badge-blue">Royal Blue</span>
+      <span class="badge badge-blue-dark">Blue Dark</span>
+      <span class="badge badge-saffron">Saffron</span>
+      <span class="badge badge-saffron-dark">Saffron Dark</span>
+      <span class="badge badge-neutral">Neutral</span>
+      <span class="badge badge-white">White</span>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- FORMS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Form Elements</h3>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Sri Sathya Sai Baba">
+        <span class="form-hint">As registered at the Sai Centre</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Spiritual Zone</label>
+        <select class="form-select">
+          <option>— Select your zone —</option>
+          <option>Zone 1 — South Asia</option>
+          <option>Zone 5 — Americas</option>
+          <option>Zone 8 — Europe</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Share your prayer or message of service…"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email (error state)</label>
+        <input class="form-input form-error" type="email" value="invalid-email">
+        <span class="form-error-msg">Please enter a valid email address.</span>
+      </div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- ALERTS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Alerts & Notices</h3>
+    <div class="alert-stack">
+      <div class="alert alert-sacred">
+        <span class="alert-icon">☀</span>
+        <div class="alert-body">
+          <div class="alert-title">Daily Message</div>
+          <div class="alert-desc">Today's message from Bhagawan: "The goal of life is to merge with the divine through love and selfless service."</div>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">ℹ</span>
+        <div class="alert-body">
+          <div class="alert-title">Upcoming World Conference</div>
+          <div class="alert-desc">The 12th World Conference will be held November 2026. Registration opens in 30 days.</div>
+        </div>
+      </div>
+      <div class="alert alert-success">
+        <span class="alert-icon">✓</span>
+        <div class="alert-body">
+          <div class="alert-title">Seva Hours Logged</div>
+          <div class="alert-desc">Your 48 service hours have been recorded and approved for this quarter.</div>
+        </div>
+      </div>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠</span>
+        <div class="alert-body">
+          <div class="alert-title">Report Deadline Approaching</div>
+          <div class="alert-desc">Your zone's Annual Report is due in 5 days. Please review all submissions.</div>
+        </div>
+      </div>
+      <div class="alert alert-error">
+        <span class="alert-icon">✕</span>
+        <div class="alert-body">
+          <div class="alert-title">Sync Failed</div>
+          <div class="alert-desc">Unable to connect to the Sai network. Check your connection and try again.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- PROGRESS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Progress Bars</h3>
+    <div class="progress-stack">
+      <div class="prog-row">
+        <div class="prog-header"><span class="prog-title">Annual Seva Goal</span><span class="prog-pct">84%</span></div>
+        <div class="prog-track"><div class="prog-fill pf-blue" style="width:84%"></div></div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-header"><span class="prog-title">Community Adoption</span><span class="prog-pct">67%</span></div>
+        <div class="prog-track"><div class="prog-fill pf-saffron" style="width:67%"></div></div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-header"><span class="prog-title">Education Enrolment</span><span class="prog-pct">93%</span></div>
+        <div class="prog-track"><div class="prog-fill pf-gradient" style="width:93%"></div></div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-header"><span class="prog-title">Healthcare Camps</span><span class="prog-pct">51%</span></div>
+        <div class="prog-track"><div class="prog-fill pf-dark" style="width:51%"></div></div>
+      </div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- TABS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Tabs</h3>
+    <div class="tab-bar">
+      <div class="tab-item active" onclick="setTab(this)">His Words</div>
+      <div class="tab-item" onclick="setTab(this)">Events</div>
+      <div class="tab-item" onclick="setTab(this)">Service</div>
+      <div class="tab-item" onclick="setTab(this)">Education</div>
+      <div class="tab-item" onclick="setTab(this)">Healthcare</div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- AVATARS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-4);letter-spacing:.02em">Avatars</h3>
+    <div class="avatar-group">
+      <div class="avatar av-blue">SR</div>
+      <div class="avatar av-saffron">PK</div>
+      <div class="avatar av-blue2">VR</div>
+      <div class="avatar av-light">AN</div>
+      <div class="avatar av-neutral">SM</div>
+      <div class="avatar av-more">+12</div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- TOOLTIPS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Tooltips</h3>
+    <div class="tooltip-row">
+      <div class="tooltip-wrap">
+        <button class="btn btn-primary">Primary</button>
+        <div class="tooltip-box">Royal Blue — main CTA</div>
+      </div>
+      <div class="tooltip-wrap">
+        <button class="btn btn-accent">Accent</button>
+        <div class="tooltip-box">Saffron — secondary action</div>
+      </div>
+      <div class="tooltip-wrap">
+        <span class="badge badge-saffron" style="cursor:default">SEVA</span>
+        <div class="tooltip-box">Selfless service to humanity</div>
+      </div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- SPACING -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Spacing Scale</h3>
+    <div class="spacing-rows">
+      <div class="sp-row"><span class="sp-label">--sp-1 · 4px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:4px;height:16px"></div></div><span class="sp-val">4px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-2 · 8px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:8px;height:16px"></div></div><span class="sp-val">8px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-3 · 12px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:12px;height:16px"></div></div><span class="sp-val">12px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-4 · 16px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:16px;height:16px"></div></div><span class="sp-val">16px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-5 · 20px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:20px;height:16px"></div></div><span class="sp-val">20px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-6 · 24px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:24px;height:16px"></div></div><span class="sp-val">24px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-8 · 32px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:32px;height:16px"></div></div><span class="sp-val">32px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-10 · 40px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:40px;height:16px"></div></div><span class="sp-val">40px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-12 · 48px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:48px;height:16px"></div></div><span class="sp-val">48px</span></div>
+      <div class="sp-row"><span class="sp-label">--sp-16 · 64px</span><div class="sp-bar-wrap"><div class="sp-bar-inner" style="width:64px;height:16px"></div></div><span class="sp-val">64px</span></div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- RADIUS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Border Radius</h3>
+    <div class="radius-row">
+      <div><div class="r-box" style="border-radius:var(--r-sm)"><div class="r-box-label">sm</div><div class="r-box-label">4px</div></div></div>
+      <div><div class="r-box" style="border-radius:var(--r-md)"><div class="r-box-label">md</div><div class="r-box-label">8px</div></div></div>
+      <div><div class="r-box" style="border-radius:var(--r-lg)"><div class="r-box-label">lg</div><div class="r-box-label">12px</div></div></div>
+      <div><div class="r-box" style="border-radius:var(--r-xl)"><div class="r-box-label">xl</div><div class="r-box-label">20px</div></div></div>
+      <div><div class="r-box" style="border-radius:var(--r-pill);width:120px;height:48px"><div class="r-box-label">pill · 999px</div></div></div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- SHADOWS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-2);letter-spacing:.02em">Elevation</h3>
+    <div class="shadow-row">
+      <div class="s-box" style="box-shadow:var(--shadow-xs)"><div style="font-family:var(--font-display);font-size:18px;color:var(--blue-700)">xs</div><div class="s-label">--shadow-xs</div></div>
+      <div class="s-box" style="box-shadow:var(--shadow-sm)"><div style="font-family:var(--font-display);font-size:18px;color:var(--blue-700)">sm</div><div class="s-label">--shadow-sm</div></div>
+      <div class="s-box" style="box-shadow:var(--shadow-md)"><div style="font-family:var(--font-display);font-size:18px;color:var(--blue-700)">md</div><div class="s-label">--shadow-md</div></div>
+      <div class="s-box" style="box-shadow:var(--shadow-lg)"><div style="font-family:var(--font-display);font-size:18px;color:var(--blue-700)">lg</div><div class="s-label">--shadow-lg</div></div>
+      <div class="s-box" style="box-shadow:var(--shadow-blue)"><div style="font-family:var(--font-display);font-size:18px;color:var(--blue-500)">blue</div><div class="s-label">--shadow-blue</div></div>
+      <div class="s-box" style="box-shadow:var(--shadow-saffron)"><div style="font-family:var(--font-display);font-size:18px;color:var(--saffron-500)">saffron</div><div class="s-label">--shadow-saffron</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PATTERNS ══════════════════ -->
+<section class="ds-section" id="patterns">
+  <div class="ds-container">
+    <div class="sec-eyebrow">Patterns</div>
+    <h2 class="sec-title">Composed Patterns</h2>
+    <p class="sec-desc">Higher-order compositions combining tokens and base components into complete, reusable UI patterns.</p>
+
+    <!-- CONTENT CARDS -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-top:var(--sp-8);margin-bottom:var(--sp-2);letter-spacing:.02em">Content Cards</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-accent-bar cab-blue"></div>
+        <div class="card-body">
+          <div class="card-icon ci-blue">✦</div>
+          <div class="card-title">His Words</div>
+          <p class="card-text">A comprehensive repository of timeless teachings shared by Sri Sathya Sai Baba — discourses, vahinis, and divine messages.</p>
+          <span class="badge badge-blue">Discourses</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">1,200+ entries</span>
+          <button class="btn btn-primary btn-sm">Explore →</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-accent-bar cab-saffron"></div>
+        <div class="card-body">
+          <div class="card-icon ci-saffron">☀</div>
+          <div class="card-title">Humanitarian Relief</div>
+          <p class="card-text">Selfless service to communities affected by natural disasters, disease, and hardship — Love in action across 90 countries.</p>
+          <span class="badge badge-saffron">Service</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">40+ regions</span>
+          <button class="btn btn-accent btn-sm">Learn more →</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-accent-bar cab-gradient"></div>
+        <div class="card-body">
+          <div class="card-icon ci-blue">◈</div>
+          <div class="card-title">Young Adults</div>
+          <p class="card-text">Youth integrating Sai teachings for spiritual wellbeing and positive societal impact — the divine future in action.</p>
+          <span class="badge badge-blue">Youth</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">18–40 age group</span>
+          <button class="btn btn-outline-blue btn-sm">Connect →</button>
+        </div>
+      </div>
+
+      <div class="card card-blue">
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(255,255,255,.15)">◉</div>
+          <div class="card-title">World Conference</div>
+          <p class="card-text">The 12th World Conference gathers thousands of devotees from over 90 countries in a unified celebration of service and spirit.</p>
+          <span class="badge badge-saffron-dark">Register Now</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">November 2026</span>
+          <button class="btn btn-accent btn-sm">Register →</button>
+        </div>
+      </div>
+
+      <div class="card card-dark">
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(255,255,255,.1)">✦</div>
+          <div class="card-title">Sacred Archive</div>
+          <p class="card-text">A global effort documenting the mission and legacy of Bhagawan Sri Sathya Sai Baba for future generations.</p>
+          <span class="badge badge-saffron">Archive</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-meta">50+ years of history</span>
+          <button class="btn btn-outline-blue btn-sm" style="color:var(--blue-200);border-color:rgba(144,187,231,.35)">View →</button>
+        </div>
+      </div>
+
+      <div class="stat-card" style="display:flex;flex-direction:column;gap:var(--sp-5)">
+        <div>
+          <div class="stat-label">Countries Active</div>
+          <div class="stat-value">90<span class="stat-value-accent">+</span></div>
+          <div class="stat-change sc-up">↑ 3 new this year</div>
+        </div>
+        <div style="border-top:1px solid var(--color-border);padding-top:var(--sp-4)">
+          <div class="stat-label">Seva Hours</div>
+          <div class="stat-value" style="font-size:32px">680<span class="stat-value-accent">K</span></div>
+          <div class="stat-change sc-up">↑ Q3 record</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUOTE CARD -->
+    <div style="margin-top:var(--sp-6)">
+      <div class="card-quote">
+        <span class="quote-mark">"</span>
+        <blockquote>Help ever, hurt never. The goal of life is to merge with the divine through love and selfless service to all of creation.</blockquote>
+        <cite>Sri Sathya Sai Baba</cite>
+      </div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- STAT CARDS ROW -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-5);letter-spacing:.02em">Stat Cards</h3>
+    <div class="three-col">
+      <div class="stat-card">
+        <div class="stat-label">Sai Centres</div>
+        <div class="stat-value">1,<span class="stat-value-accent">200</span></div>
+        <div class="stat-change sc-up">↑ 48 opened this year</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Lives Touched</div>
+        <div class="stat-value">4.<span class="stat-value-accent">2</span>M</div>
+        <div class="stat-change sc-up">↑ 12% annually</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Medical Camps</div>
+        <div class="stat-value"><span class="stat-value-accent">3</span>,840</div>
+        <div class="stat-change sc-up">↑ Q2 record set</div>
+      </div>
+    </div>
+
+    <div class="divider-ornamental"><span class="divider-ornamental-icon">✦</span></div>
+
+    <!-- PROFILE + SIDEBAR -->
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--blue-800);margin-bottom:var(--sp-5);letter-spacing:.02em">Profile Card & Sidebar Nav</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--sp-8);align-items:flex-start;">
+
+      <div class="profile-card">
+        <div class="profile-banner">
+          <div class="profile-banner-accent"></div>
+        </div>
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar">SR</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-name">Sundaram Raghavan</div>
+          <div class="profile-role">Regional Coordinator · Zone 5</div>
+          <p class="profile-bio">22-year devotee coordinating healthcare camps and education initiatives across 8 countries in the Asia Pacific region.</p>
+          <div class="badge-group">
+            <span class="badge badge-blue">Healthcare</span>
+            <span class="badge badge-saffron">Education</span>
+            <span class="badge badge-neutral">Zone 5</span>
+          </div>
+          <div class="profile-stats">
+            <div class="ps-item"><div class="ps-num">14</div><div class="ps-lbl">Projects</div></div>
+            <div class="ps-item"><div class="ps-num">2.4K</div><div class="ps-lbl">Seva hrs</div></div>
+            <div class="ps-item"><div class="ps-num">8</div><div class="ps-lbl">Countries</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-demo">
+        <div class="sb-section">Navigation</div>
+        <a class="sb-item active" href="#"><span class="sb-icon">◈</span> Dashboard</a>
+        <a class="sb-item" href="#"><span class="sb-icon">✦</span> His Words</a>
+        <a class="sb-item" href="#"><span class="sb-icon">◉</span> Events</a>
+        <a class="sb-item" href="#"><span class="sb-icon">☀</span> Humanitarian</a>
+        <a class="sb-item" href="#"><span class="sb-icon">◇</span> Education</a>
+        <div class="sb-section">Resources</div>
+        <a class="sb-item" href="#"><span class="sb-icon">▷</span> Videos</a>
+        <a class="sb-item" href="#"><span class="sb-icon">⊕</span> Vahinis</a>
+        <a class="sb-item" href="#"><span class="sb-icon">♬</span> Bhajans</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="ds-footer">
+  <div class="ds-container">
+    <div class="footer-title">Sri Sathya Sai Center of Austin <span>Design System</span></div>
+    <div class="footer-divider"></div>
+    <p class="footer-sub">Royal Blue #1A5EA8 · Saffron Orange #F7941D · Warm Neutral<br>Cinzel · Source Serif 4 · Jost · 30-stop color ramp · Full component library</p>
+  </div>
+</footer>
+
+<script>
+function setTab(el) {
+  el.closest('.tab-bar').querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Nav scroll spy
+const sections = document.querySelectorAll('.ds-section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
